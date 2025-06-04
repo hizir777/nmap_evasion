@@ -1,1 +1,15 @@
-requests
+# Firewall Evasion Aracı Kurulum Talimatları
+# Not: Nmap sisteminizde kurulu olmalıdır.
+
+1. Python ortamını oluşturun (isteğe bağlı ama önerilir):
+   python -m venv venv
+   source venv/bin/activate 
+
+2. Gereken Python modüllerini yükleyin:
+   pip install -r requirements.txt
+
+3. Sisteme Nmap yükleyin:
+   Debian/Ubuntu: sudo apt install nmap
+
+4. Kullanım:
+   python main.py hedefsite.com
