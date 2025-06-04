@@ -156,5 +156,3 @@ Found a bug? Open an issue.
 Hata bulursanız bir sorun bildirin.*
 
 ---
-
-*Replace placeholders (e.g., YOUR_USERNAME/YOUR_REPO) with your project details.*
