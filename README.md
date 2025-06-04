@@ -37,8 +37,8 @@ A Python-based penetration testing tool that identifies firewall technologies an
 ## Team / *Ekip*
 
 - **24....1008** - Can Ekizoğlu: *coding and researching*  
-  *Can ekizoğlu: kodlama ve araştırma*
-- **another** - Ömer Berk Eriş: *coding and researching*  
+  *Can Ekizoğlu: kodlama ve araştırma*
+- **24....1034** - Ömer Berk Eriş: *coding and researching*  
   *Ömer Berk Eriş: kodlama ve araştırma*
 
 ---
