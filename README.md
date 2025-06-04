@@ -18,16 +18,16 @@ A Python-based penetration testing tool that identifies firewall technologies an
 
 - 🔍**Firewall Vendor Detection**: Recognizes common solutions such as Cloudflare, Fortinet, AWS, and Azure.
 - 🔍*Güvenlik Duvarı Sağlayıcı Tespiti:  Cloudflare, Fortinet, AWS, Azure gibi yaygın çözümleri tanır.*
-
+////////////////////////////////////////////////////////////////////////////////////////////////////
 - 🛡️**HTTP WAF Analysis**: Nmap NSE scripts such as http-methods, http-waf-detect for WAF detection.
 - 🛡️*HTTP WAF Analizi: `http-methods`, `http-waf-detect` gibi Nmap NSE script'leri ile WAF tespiti.*
-
+////////////////////////////////////////////////////////////////////////////////////////////////////
 - 🎯**8+ Evasion Techniques**: Performs testing with techniques such as TCP fragmentation, decoy, spoofed MAC, and slow timing.
 - 🎯*8+ Kaçınma Tekniği: TCP fragmentation, decoy, spoofed MAC, slow timing vb. tekniklerle test yapar.*
-
+////////////////////////////////////////////////////////////////////////////////////////////////////
 - 📊**HTML + JSON Reports**: Generates output in visual HTML and machine-readable JSON formats.
 - 📊*HTML + JSON Raporları: Görsel HTML ve makine okunabilir JSON formatlarında çıktı üretir.*
-
+////////////////////////////////////////////////////////////////////////////////////////////////////
 - 🔧**Fully Automated**: Detection, analysis, and reporting are completed with a single command.
 - 🔧*Tamamen Otomatik: Tek komutla tespit, analiz ve raporlama işlemleri tamamlanır.*
   
