@@ -1,51 +1,24 @@
-**Proje ve Hedefler ve Ozellikler:** 
+**Proje ve Hedefler ve Ozellikler:** Bu proje, hedef sistemin sahip olduğu güvenlik duvarı (firewall) altyapısını analiz etmek ve zafiyetlerini değerlendirmek amacıyla geliştirilmiş bir siber güvenlik aracıdır. Nmap'in sunduğu güçlü tarama ve script desteğinden faydalanarak, sistemde kullanılan firewall markasını (örneğin Cloudflare, Fortinet, AWS WAF gibi) DNS kayıtları ve WHOIS bilgileri üzerinden tespit eder. Ardından, çeşitli ağ seviyesi evasion (atlatma) tekniklerini uygulayarak firewall’un bu saldırılara verdiği tepkiyi ölçer. Kullanılan teknikler arasında TCP fragmentation, MAC spoofing, decoy IP’ler, bad checksum gibi gelişmiş bypass yöntemleri yer alır. Ayrıca HTTP düzeyinde WAF tespiti de gerçekleştirilir. Tüm bu analizler sonucunda elde edilen veriler, okunabilir HTML ve JSON formatlarında detaylı bir şekilde raporlanır. Araç, laboratuvar testlerinde veya izne dayalı pentest çalışmalarında firewall yapılandırmalarının sağlamlığını değerlendirmek için etkili bir çözüm sunar. 
 
 
+**Görev:** 2025 yılı için [Firewall_evasion, örneğin: 'nmap kullanarak firewall tespiti ve bunlardan kaçınma yolları'] alanındaki en son ve en etkili ilk 10 tekniği/trendi derinlemesine araştır ve belirle. 
 
-Bu proje, bir bilgisayar ağındaki yazılımcıları, ağ trafiği analiz aracı olan Wireshark kullanarak tespit etmeyi amaçlamaktadır. Temel hedef, yazılımcıların karakteristik ağ aktivitelerini (örneğin, Git/SSH kullanımı, IDE'ler ve kod editörlerinden kaynaklanan trafik, geliştirme/test sunucularına erişim, API test araçları trafiği, sanal makine/konteyner etkileşimleri ve özel port/protokol kullanımları) analiz ederek ayırt edici dijital izlerini belirlemektir. Proje kapsamında, bu özel trafik desenlerini etkin bir şekilde saptamak ve diğer ağ trafiğinden ayrıştırmak amacıyla hem canlı veri yakalama aşamasında (capture filters) hem de yakalanmış verilerin incelenmesi sırasında (display filters) kullanılacak kapsamlı ve özelleştirilmiş Wireshark filtreleri oluşturulacaktır. Bu filtreler, yazılımcılara özgü uygulamaların, servislerin ve davranış kalıplarının tespiti üzerine yoğunlaşarak, ağ üzerindeki yazılımcı varlığını ve faaliyetlerini yüksek doğrulukla belirlemeyi hedeflemektedir.
+**Ozellikler** 
 
+**İstenen Çıktı Detayları:** 
+1. Belirlenen her bir teknik/trend için kısa ve öz bir başlık.
+2. Her bir tekniğin/trendin ne olduğu, nasıl çalıştığı ve neden önemli olduğuna dair 2-3 cümlelik bir açıklama.
+3. Her bir tekniğin/trendin 2025'teki potansiyel etkileri ve uygulama alanları.
+4. Mümkünse, her bir teknik/trend için güvenilir bir kaynak veya referans (örneğin, yayın adı, konferans, uzman görüşü).
+5. Sonuçları numaralandırılmış bir liste halinde sun. **Kısıtlamalar:** - Sadece 2025 yılı ve sonrası için öngörülen veya geçerli olacak tekniklere odaklan. - Bilgilerin güncel ve doğrulanabilir olmasına özen göster. - Spekülatif olmayan, kanıta dayalı bilgiler sun.
 
+**Örnek Alanlar:** 
+   -Ağ Güvenliği ve Sızma Testi Yaklaşımları
 
-**Görev:** 2025 yılı için [Developer Hunter, 'wireshark kullanarak yazilimcilari agda tesbit etmek (Yazilimci Avi)'] alanındaki en son ve en etkili ilk 10 tekniği/trendi derinlemesine araştır ve belirle.
+   -Firewall ve WAF Teknolojilerinin Karşılaştırmalı Analizi
 
+   -Siber Güvenlikte Evasion Teknikleri ve Karşı Önlemler
 
+   -Kritik Altyapılar için Güvenlik Duvarı Dayanıklılık Testleri
 
-**Ozellikler** 
-
-
-
-**İstenen Çıktı Detayları:**
-
-1.  Belirlenen her bir teknik/trend için kısa ve öz bir başlık.
-
-2.  Her bir tekniğin/trendin ne olduğu, nasıl çalıştığı ve neden önemli olduğuna dair 2-3 cümlelik bir açıklama.
-
-3.  Her bir tekniğin/trendin 2025'teki potansiyel etkileri ve uygulama alanları.
-
-4.  Mümkünse, her bir teknik/trend için güvenilir bir kaynak veya referans (örneğin, yayın adı, konferans, uzman görüşü).
-
-5.  Sonuçları numaralandırılmış bir liste halinde sun.
-
-
-
-**Kısıtlamalar:**
-
-- Sadece 2025 yılı ve sonrası için öngörülen veya geçerli olacak tekniklere odaklan.
-
-- Bilgilerin güncel ve doğrulanabilir olmasına özen göster.
-
-- Spekülatif olmayan, kanıta dayalı bilgiler sun.
-
-
-
-**Örnek Alanlar (Projenize Göre Değiştirin):**
-
-- Yazılım Geliştirme Metodolojileri
-
-- Veri Bilimi ve Makine Öğrenimi Uygulamaları
-
-- Blokzincir Teknolojileri
-
-- Dijital Pazarlama Stratejileri
-
-- İnsan-Bilgisayar Etkileşimi Arayüzleri
+   -Eğitim Amaçlı Siber Güvenlik Simülasyon Ortamları (CTF, lab, pfSense vb.)
