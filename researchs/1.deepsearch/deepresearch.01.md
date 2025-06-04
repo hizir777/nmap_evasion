@@ -1,3 +1,5 @@
+##PROMPT##
+
 **Proje ve Hedefler ve Ozellikler:** Bu proje, hedef sistemin sahip olduğu güvenlik duvarı (firewall) altyapısını analiz etmek ve zafiyetlerini değerlendirmek amacıyla geliştirilmiş bir siber güvenlik aracıdır. Nmap'in sunduğu güçlü tarama ve script desteğinden faydalanarak, sistemde kullanılan firewall markasını (örneğin Cloudflare, Fortinet, AWS WAF gibi) DNS kayıtları ve WHOIS bilgileri üzerinden tespit eder. Ardından, çeşitli ağ seviyesi evasion (atlatma) tekniklerini uygulayarak firewall’un bu saldırılara verdiği tepkiyi ölçer. Kullanılan teknikler arasında TCP fragmentation, MAC spoofing, decoy IP’ler, bad checksum gibi gelişmiş bypass yöntemleri yer alır. Ayrıca HTTP düzeyinde WAF tespiti de gerçekleştirilir. Tüm bu analizler sonucunda elde edilen veriler, okunabilir HTML ve JSON formatlarında detaylı bir şekilde raporlanır. Araç, laboratuvar testlerinde veya izne dayalı pentest çalışmalarında firewall yapılandırmalarının sağlamlığını değerlendirmek için etkili bir çözüm sunar. 
 
 
