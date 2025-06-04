@@ -1,15 +1,22 @@
-# Firewall Evasion Aracı Kurulum Talimatları
-# Not: Nmap sisteminizde kurulu olmalıdır.
+# ✅ Firewall Detection & Evasion Tool - Gereksinimler
 
-1. Python ortamını oluşturun (isteğe bağlı ama önerilir):
-   python -m venv venv
-   source venv/bin/activate 
+# 📌 Bu Python projesi yalnızca standart kütüphanelerle çalışır.
+# subprocess, argparse, re, socket, json, logging, datetime gibi modüller zaten Python ile birlikte gelir.
 
-2. Gereken Python modüllerini yükleyin:
-   pip install -r requirements.txt
+# 📦 Ekstra pip paketi kurulumu gerekmez.
 
-3. Sisteme Nmap yükleyin:
-   Debian/Ubuntu: sudo apt install nmap
+# ⚠️ Ancak sisteminizde Nmap kurulu olmalıdır. Aşağıdaki komutla yükleyebilirsiniz:
 
-4. Kullanım:
-   python main.py hedefsite.com
+# Linux (Debian/Ubuntu):   sudo apt update && sudo apt install nmap
+# macOS (Homebrew):        brew install nmap
+# Windows:                 https://nmap.org/download.html adresinden indirin ve PATH'e ekleyin
+
+# 🔄 Kurulum Adımları (önerilen):
+# git clone https://github.com/hizir777/nmap_evasion.git
+# cd firewall-evasion-tool
+# python -m venv venv (sanal ortam kurulması tavsiye edilir.)
+# source venv/bin/activate     (Windows: venv\Scripts\activate)
+# pip install -r requirements.txt
+
+# ✅ Projeyi çalıştırmak için:
+# python main.py hedefsite.com
