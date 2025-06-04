@@ -53,8 +53,8 @@ See our plans in [ROADMAP.md](ROADMAP.md).
 ## Research / *Araştırmalar*
 
 | Topic / *Başlık*        | Link                                    | Description / *Açıklama*                        |
-|-------------------------|-----------------------------------------|------------------------------------------------|
-| Nmap deep dive          | [researchs/aircrack.md](researchs/aircrack.md) | In-depth analysis of Aircrack-ng suite. / *Aircrack-ng paketinin derinlemesine analizi.* |
+|-------------------------|-----------------------------------------|------------------------------------------------ |
+| Nmap deep dive          | [researchs/nmap.md](researchs/nmap.md)  | Nmap derinlemesine analizi.* |
 | Example Research Topic  | [researchs/your-research-file.md](researchs/your-research-file.md) | Brief overview of this research. / *Bu araştırmanın kısa bir özeti.* |
 | Add More Research       | *Link to your other research files*     | *Description of the research*                  |
 
@@ -138,9 +138,10 @@ Licensed under the [MIT License](LICENSE.md).
 ## Acknowledgements / *Teşekkürler* (Optional)
 
 Thanks to:  
-- Awesome Library: For enabling X.  
-- Inspiration Source.  
-- Special thanks to...  
+
+- Keyvan Arasteh (keyvan.arasteh@istinye.edu.tr)
+
+   
 
 *Teşekkürler: Harika kütüphaneler ve ilham kaynakları için.*
 
@@ -148,10 +149,11 @@ Thanks to:
 
 ## Contact / *İletişim* (Optional)
 
-Project Maintainer: [Your Name/Org Name] - [your.email@example.com]  
+Project Maintainer: [Can Ekizoglu / Istinye University] - [can.ekizoglu@stu.istinye.edu.tr]  
 Found a bug? Open an issue.  
 
-*Proje Sorumlusu: [Adınız/Kuruluş Adınız] - [e-posta.adresiniz@ornek.com]. Hata bulursanız bir sorun bildirin.*
+*Proje Sorumlusu: [Can Ekizoglu / İstinye Üniversitesi] - [can.ekizoglu@stu.istinye.edu.tr]. 
+Hata bulursanız bir sorun bildirin.*
 
 ---
 
