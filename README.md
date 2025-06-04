@@ -1,41 +1,45 @@
 <div align="center">
-  <img src="https://img.shields.io/github/languages/count/keyvanarasteh/Project?style=flat-square&color=blueviolet" alt="Language Count">
-  <img src="https://img.shields.io/github/languages/top/keyvanarasteh/Project?style=flat-square&color=1e90ff" alt="Top Language">
-  <img src="https://img.shields.io/github/last-commit/keyvanarasteh/Project?style=flat-square&color=ff69b4" alt="Last Commit">
-  <img src="https://img.shields.io/github/license/keyvanarasteh/Project?style=flat-square&color=yellow" alt="License">
+  <img src="https://img.shields.io/github/languages/count/hizir777/nmap_evasion?style=flat-square&color=blueviolet" alt="Language Count">
+  <img src="https://img.shields.io/github/languages/top/hizir777/nmap_evasion?style=flat-square&color=1e90ff" alt="Top Language">
+  <img src="https://img.shields.io/github/last-commit/hizir777/nmap_evasion?style=flat-square&color=ff69b4" alt="Last Commit">
+  <img src="https://img.shields.io/github/license/hizir777/nmap_evasion?style=flat-square&color=yellow" alt="License">
   <img src="https://img.shields.io/badge/Status-Active-green?style=flat-square" alt="Status">
   <img src="https://img.shields.io/badge/Contributions-Welcome-brightgreen?style=flat-square" alt="Contributions">
 </div>
 
-# Project Name
-*Proje Adı*
+# nmap_evasion
 
-A brief, engaging description of your project.  
-*Projenizin kısa ve ilgi çekici bir açıklaması.*
+A Python-based penetration testing tool that identifies firewall technologies and evaluates multiple evasion techniques using Nmap.  
+**Nmap tabanlı, güvenlik duvarlarını tespit eden ve farklı atlatma tekniklerini analiz eden Python aracı.**
 
 ---
 
 ## Features / *Özellikler*
 
-- **Feature 1:** Description of the feature.  
-  *Özellik 1: Özelliğin açıklaması.*
-- **Feature 2:** Another cool thing it does.  
-  *Özellik 2: Yaptığı başka bir harika şey.*
-- **Feature 3:** One more for good measure.  
-  *Özellik 3: Ve bir tane daha.*
-- Add more as they develop.  
-  *Geliştikçe daha fazla ekleyin.*
+- 🔍**Firewall Vendor Detection**: Recognizes common solutions such as Cloudflare, Fortinet, AWS, and Azure. 
+  🔍*Güvenlik Duvarı Sağlayıcı Tespiti:  Cloudflare, Fortinet, AWS, Azure gibi yaygın çözümleri tanır.*
+
+- 🛡️**HTTP WAF Analysis**: Nmap NSE scripts such as http-methods, http-waf-detect for WAF detection.  
+  🛡️*HTTP WAF Analizi: `http-methods`, `http-waf-detect` gibi Nmap NSE script'leri ile WAF tespiti.*
+
+- 🎯**8+ Evasion Techniques**: Performs testing with techniques such as TCP fragmentation, decoy, spoofed MAC, and slow timing.  
+  🎯*8+ Kaçınma Tekniği: TCP fragmentation, decoy, spoofed MAC, slow timing vb. tekniklerle test yapar.*
+
+- 📊**HTML + JSON Reports**: Görsel HTML ve makine okunabilir JSON formatlarında çıktı üretir.  
+  📊*HTML + JSON Raporları: Görsel HTML ve makine okunabilir JSON formatlarında çıktı üretir.*
+
+- 🔧**Fully Automated**: Detection, analysis, and reporting are completed with a single command.
+  🔧*Tamamen Otomatik: Tek komutla tespit, analiz ve raporlama işlemleri tamamlanır.*
+  
 
 ---
 
 ## Team / *Ekip*
 
-- **219*****031** - Name Surname: *Role or Contribution*  
-  *Ad Soyad: Rolü veya Katkısı*
-- **Another Member** - Name Surname: *Role or Contribution*  
-  *Ad Soyad: Rolü veya Katkısı*
-- Add more members as needed.  
-  *Gerektiğinde daha fazla üye ekleyin.*
+- **24....008** - Can Ekizoğlu: *coding and researching*  
+  *Can ekizoğlu: kodlama ve araştırma*
+- **another** - Ömer Berk Eriş: *coding and researching*  
+  *Ömer Berk Eriş: kodlama ve araştırma*
 
 ---
 
@@ -50,7 +54,7 @@ See our plans in [ROADMAP.md](ROADMAP.md).
 
 | Topic / *Başlık*        | Link                                    | Description / *Açıklama*                        |
 |-------------------------|-----------------------------------------|------------------------------------------------|
-| Aircrack Deep Dive      | [researchs/aircrack.md](researchs/aircrack.md) | In-depth analysis of Aircrack-ng suite. / *Aircrack-ng paketinin derinlemesine analizi.* |
+| Nmap deep dive          | [researchs/aircrack.md](researchs/aircrack.md) | In-depth analysis of Aircrack-ng suite. / *Aircrack-ng paketinin derinlemesine analizi.* |
 | Example Research Topic  | [researchs/your-research-file.md](researchs/your-research-file.md) | Brief overview of this research. / *Bu araştırmanın kısa bir özeti.* |
 | Add More Research       | *Link to your other research files*     | *Description of the research*                  |
 
@@ -60,8 +64,8 @@ See our plans in [ROADMAP.md](ROADMAP.md).
 
 1. **Clone the Repository / *Depoyu Klonlayın***:  
    ```bash
-   git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
-   cd YOUR_REPO
+   git clone https://github.com/hizir777/nmap_evasion.git
+   cd nmap_evasion
    ```
 
 2. **Set Up Virtual Environment / *Sanal Ortam Kurulumu*** (Recommended):  
@@ -83,18 +87,24 @@ Run the project:
 *Projeyi çalıştırın:*
 
 ```bash
-python main.py --input your_file.pcap --output results.txt
+python main.py example.com
 ```
 
 **Steps**:  
-1. Prepare input data (*explain data needed*).  
-2. Run the script with arguments (*explain key arguments*).  
-3. Check output (*explain where to find results*).  
 
+1. Specify the target website. Write it without mentioning the protocol :
+    *cloudflare.com*  
+3. Run directly by typing:
+    *python main.py <target url>*  
+5. You can find the outputs in HTML and JSON formats inside the *core/source/* folder.
+
+   
 *Adımlar*:  
-1. Giriş verilerini hazırlayın (*ne tür verilere ihtiyaç duyulduğunu açıklayın*).  
-2. Betiği argümanlarla çalıştırın (*önemli argümanları açıklayın*).  
-3. Çıktıyı kontrol edin (*sonuçları nerede bulacağınızı açıklayın*).
+1. Hedef websitesini yazın. Protokol belirtmeden:
+    *cloudflare.com*  
+3. Bu şekilde direkt olarak çalışır:
+    *python main.py <target url>*  
+5. Çıktıları HTML ve JSON formatlarında core/source/ klasörünün içinde bulabilirsiniz.
 
 ---
 
@@ -102,7 +112,7 @@ python main.py --input your_file.pcap --output results.txt
 
 We welcome contributions! To help:  
 1. Fork the repository.  
-2. Clone your fork (`git clone git@github.com:YOUR_USERNAME/YOUR_REPO.git`).  
+2. Clone your fork (`git clone git@github.com:hizir777/nmap_evasion.git`).  
 3. Create a branch (`git checkout -b feature/your-feature`).  
 4. Commit changes with clear messages.  
 5. Push to your fork (`git push origin feature/your-feature`).  
