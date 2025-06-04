@@ -95,7 +95,9 @@ python main.py example.com
 1. Specify the target website. Write it without mentioning the protocol :
     *cloudflare.com*  
 3. Run directly by typing:
-    *python main.py <target url>*  
+  ```bash
+  python main.py example.com
+  ```
 5. You can find the outputs in HTML and JSON formats inside the *core/source/* folder.
 
    
@@ -103,7 +105,9 @@ python main.py example.com
 1. Hedef websitesini yazın. Protokol belirtmeden:
     *cloudflare.com*  
 3. Bu şekilde direkt olarak çalışır:
-    *python main.py <target url>*  
+  ```bash
+  python main.py example.com
+  ```  
 5. Çıktıları HTML ve JSON formatlarında core/source/ klasörünün içinde bulabilirsiniz.
 
 ---
