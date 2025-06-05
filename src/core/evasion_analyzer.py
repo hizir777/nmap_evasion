@@ -1,3 +1,5 @@
+"""Run Nmap evasion techniques and summarise their effectiveness."""
+
 import subprocess
 import re
 import time
@@ -14,7 +16,22 @@ EVASION_TECHNIQUES = [
     {"name": "Combined Evasion", "args": ["-f", "-D", "RND:5", "--spoof-mac", "0", "--source-port", "53", "--data-length", "50", "-T2"]}
 ]
 
-def run_nmap(target, extra_args=None):
+def run_nmap(target: str, extra_args: list[str] | None = None) -> str:
+    """Execute an Nmap scan with optional evasion parameters.
+
+    Parameters
+    ----------
+    target : str
+        Domain or IP address to scan.
+    extra_args : list[str] | None, optional
+        Additional arguments for Nmap representing evasion options.
+
+    Returns
+    -------
+    str
+        Raw output produced by Nmap.
+    """
+
     cmd = ["nmap", "-Pn", "-sS", "-p", "80,443", target]
     if extra_args:
         cmd = cmd[:1] + extra_args + cmd[1:]
@@ -25,11 +42,27 @@ def run_nmap(target, extra_args=None):
         return e.output.decode()
     except Exception as e:
         return str(e)
+    
+def parse_open_ports(nmap_output: str) -> list[str]:
+    """Extract a list of open TCP port numbers from Nmap output."""
 
-def parse_open_ports(nmap_output):
     return re.findall(r"(\d+)/tcp\s+open", nmap_output)
 
-def run_all_evasion_tests(target):
+def run_all_evasion_tests(target: str) -> dict:
+    """Run every predefined Nmap evasion technique against a target.
+
+    Parameters
+    ----------
+    target : str
+        Host or domain name to scan.
+
+    Returns
+    -------
+    dict
+        Dictionary containing the baseline open ports and the result list for
+        each evasion attempt.
+    """
+
     baseline_output = run_nmap(target)
     baseline_ports = parse_open_ports(baseline_output)
     results = []
@@ -55,8 +88,3 @@ def run_all_evasion_tests(target):
             "observed_ports": ports,
             "duration_sec": elapsed
         })
-
-    return {
-        "baseline_ports": baseline_ports,
-        "results": results
-    }

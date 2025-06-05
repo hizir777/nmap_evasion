@@ -76,7 +76,7 @@ See our plans in [ROADMAP.md](ROADMAP.md).
 
 3. **Install Dependencies / *Bağımlılıkları Yükleyin***:  
    ```bash
-   pip install -r requirements.txt
+   pip install -r src/requirements.txt
    ```
 
 ---
@@ -87,7 +87,7 @@ Run the project:
 *Projeyi çalıştırın:*
 
 ```bash
-python main.py example.com
+python src/main.py example.com
 ```
 
 **Steps**:  
@@ -96,9 +96,9 @@ python main.py example.com
     *cloudflare.com*  
 3. Run directly by typing:
   ```bash
-  python main.py example.com
+  python src/main.py example.com
   ```
-5. You can find the outputs in HTML and JSON formats inside the *core/source/* folder.
+5. You can find the outputs in HTML and JSON formats inside the *src/output/* folder.
 
    
 *Adımlar*:  
@@ -106,9 +106,9 @@ python main.py example.com
     *cloudflare.com*  
 3. Bu şekilde direkt olarak çalışır:
   ```bash
-  python main.py example.com
+  python src/main.py example.com
   ```  
-5. Çıktıları HTML ve JSON formatlarında core/source/ klasörünün içinde bulabilirsiniz.
+5. Çıktıları HTML ve JSON formatlarında src/output/ klasörünün içinde bulabilirsiniz.
 
 ---
 
